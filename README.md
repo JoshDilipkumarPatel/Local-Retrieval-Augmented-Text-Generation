@@ -1,148 +1,108 @@
-Perfect — you want the *entire README* to render correctly on GitHub, including the tree diagram and indented code sections.
-Here’s the **final full `README.md` file**, fully Markdown-safe (everything will display cleanly on GitHub — no broken indentation, no formatting issues).
+🧠 Local Retrieval-Augmented Text Generation (RAG)
 
----
+A fully offline Retrieval-Augmented Generation (RAG) system that combines semantic search with transformer-based text generation.
+This project demonstrates how to build a local, API-free pipeline for knowledge-grounded responses using Python, PyTorch, Hugging Face Transformers, Sentence-Transformers, and FAISS.
 
-```markdown
-# 🧠 Local Retrieval-Augmented Text Generation (RAG)
+🚀 Overview
 
-This project implements a fully local Retrieval-Augmented Generation (RAG) pipeline that combines semantic retrieval with transformer-based text generation.  
-It retrieves relevant context from a custom knowledge base and generates grounded, context-aware answers — all running **offline** without relying on external APIs.
+Large Language Models (LLMs) are powerful but often rely on cloud APIs or lack grounding in local data.
+This project solves that by creating a local RAG pipeline that retrieves relevant text chunks from a custom dataset and generates context-aware answers — all running offline.
 
----
+Core idea:
 
-## 📖 Project Overview
+Retrieve relevant information from a local knowledge base → Use a lightweight local model (TinyLlama / Phi-2) → Generate grounded responses.
 
-Modern language models are powerful but often lack grounding in private or local data, and most rely on cloud-based APIs.  
-This project demonstrates a **completely offline RAG architecture**, where:
+🧩 Features
 
-- A knowledge base (`data.txt`) is embedded using **Sentence-Transformers** and indexed with **FAISS**.  
-- The system retrieves semantically relevant chunks for a given user query.  
-- Lightweight open models like **TinyLlama** or **Phi-2** (via Hugging Face Transformers) generate final, context-aware responses.  
+🧠 Semantic Search: Retrieve relevant chunks using embeddings from Sentence-Transformers.
 
-The design ensures privacy, reproducibility, and full offline execution — suitable for research, personal assistants, or secure enterprise environments.
+🔍 Vector Indexing: Store and query embeddings efficiently with FAISS.
 
----
+🤖 Local Generation: Use open LLMs (TinyLlama or Phi-2) via Hugging Face Transformers for text generation.
 
-## 🚀 Features
+⚙️ Offline Execution: No external APIs required — everything runs locally.
 
-- End-to-end offline RAG pipeline: data → embeddings → retrieval → text generation  
-- Semantic search powered by Sentence-Transformers and FAISS  
-- Local text generation using open-source transformer models (TinyLlama / Phi-2)  
-- Modular and extensible design for easy experimentation with other models or datasets  
+🧱 Modular Architecture: Separated components for embedding, retrieval, and generation.
 
----
+🗂️ Project Structure
+├── main.py             # Orchestrates the pipeline
+├── embedder.py         # Generates and indexes embeddings
+├── retriever.py        # Retrieves top-k relevant text chunks
+├── generator.py        # Loads the local model for text generation
+├── data.txt            # Knowledge base / reference text
+└── README.md           # Project documentation
 
-## 🛠️ Technologies Used
+⚙️ Installation
 
-- Python 3.x  
-- PyTorch  
-- Hugging Face Transformers  
-- Sentence-Transformers  
-- FAISS (Facebook AI Similarity Search)  
+Clone the repository
 
----
-
-## 📂 Project Structure
-
-```
-
-├── README.md          # Project documentation
-├── main.py            # Orchestrates retrieval and generation
-├── embedder.py        # Creates and indexes text embeddings
-├── retriever.py       # Retrieves top-k relevant chunks for a query
-├── generator.py       # Loads and runs the language model
-└── data.txt           # Local knowledge base
-
-````
-
----
-
-## ⚡ Getting Started
-
-### 1. Clone the repository
-```bash
 git clone https://github.com/JoshDilipkumarPatel/Local-RAG-System.git
 cd Local-RAG-System
-````
 
-### 2. Install dependencies
 
-```bash
+Create a virtual environment
+
+python -m venv venv
+venv\Scripts\activate
+
+
+Install dependencies
+
 pip install torch transformers sentence-transformers faiss-cpu
-```
 
-### 3. Add your data and run
+💡 Usage
 
-Add your text content to `data.txt`.
+Prepare your data
+Place your text data inside data.txt.
+Example:
 
-**Example:**
+Blockchain is a decentralized ledger technology that ensures transparency and security in digital transactions.
 
-```
-Blockchain is a decentralized ledger technology that ensures secure, transparent transactions.
-```
 
-Then run:
+Run the app
 
-```bash
 python main.py
-```
 
-### 4. Output
 
-Ask questions directly in the console:
+Ask questions interactively
 
-```
 Enter your question: What is blockchain?
-```
 
-The model retrieves relevant context and generates an informed response.
 
----
+Get grounded, context-aware answers directly from your local knowledge base.
 
-## 📊 Example Output
-
-```
+🧠 Example Output
 Enter your question: What is blockchain?
 
 Answer:
-Blockchain is a distributed ledger technology that records transactions across multiple systems, ensuring transparency and eliminating the need for central intermediaries.
-```
+Blockchain is a decentralized ledger system that records transactions securely across a distributed network, ensuring transparency and trust without intermediaries.
 
----
+🔬 Tech Stack
 
-## 📂 Sample Knowledge Base
+Language Model: TinyLlama / Phi-2 (Hugging Face Transformers)
 
-You can include any domain text (academic notes, FAQs, documents, etc.) inside `data.txt`.
-The retriever will automatically index it for semantic search and retrieval.
+Embeddings: Sentence-Transformers (MiniLM)
 
----
+Vector Search: FAISS
 
-## ✨ Future Improvements
+Framework: PyTorch
 
-* Integration with a Streamlit or Gradio web interface
-* Support for hybrid retrieval (dense + keyword-based search)
-* Evaluate performance with retrieval metrics like Recall@k and MRR
-* Extend to handle multi-document summarization and question-answering
+Language: Python
 
----
+📈 Key Learnings
 
-## 📚 References
+Implemented semantic retrieval and vector search using FAISS.
 
-* [Hugging Face Transformers](https://huggingface.co/docs/transformers)
-* [Sentence-Transformers](https://www.sbert.net)
-* [FAISS Library](https://faiss.ai)
+Integrated open-source LLMs for offline, context-driven generation.
 
----
+Designed a reproducible, modular pipeline for future scalability and dataset extension.
 
-## 👨‍💻 Author
+📚 Future Improvements
 
-**Josh Dilipkumar Patel**
-📧 [joshdilipkumapatel@gmail.com](mailto:joshdilipkumapatel@gmail.com)
-🔗 [GitHub Profile](https://github.com/JoshDilipkumarPatel)
+Add UI interface (Streamlit or Gradio)
 
-```
+Integrate hybrid retrieval (BM25 + dense embeddings)
 
----
-It’ll look clean, consistent, and professional.
-```
+Evaluate with STS and retrieval metrics (Recall@k, MRR)
+
+Extend to multi-document summarization
