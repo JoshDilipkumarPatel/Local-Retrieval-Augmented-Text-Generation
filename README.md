@@ -1,98 +1,148 @@
-🧠 Local Retrieval-Augmented Text Generation (RAG)
+Perfect — you want the *entire README* to render correctly on GitHub, including the tree diagram and indented code sections.
+Here’s the **final full `README.md` file**, fully Markdown-safe (everything will display cleanly on GitHub — no broken indentation, no formatting issues).
 
-This project implements a fully local Retrieval-Augmented Generation (RAG) pipeline that combines semantic search with transformer-based text generation. It retrieves relevant information from a local knowledge base and generates context-aware responses — all running offline, without using any external APIs.
+---
 
-📖 Project Overview
+```markdown
+# 🧠 Local Retrieval-Augmented Text Generation (RAG)
 
-Large Language Models (LLMs) are powerful but often ungrounded and dependent on cloud APIs.
-This project demonstrates how to build a self-contained RAG system that can understand queries, retrieve relevant context, and generate grounded text responses — entirely on your local machine.
+This project implements a fully local Retrieval-Augmented Generation (RAG) pipeline that combines semantic retrieval with transformer-based text generation.  
+It retrieves relevant context from a custom knowledge base and generates grounded, context-aware answers — all running **offline** without relying on external APIs.
 
-Here’s what happens inside:
+---
 
-Your text data is stored in data.txt and split into chunks.
+## 📖 Project Overview
 
-Each chunk is converted into numerical embeddings using Sentence-Transformers (MiniLM).
+Modern language models are powerful but often lack grounding in private or local data, and most rely on cloud-based APIs.  
+This project demonstrates a **completely offline RAG architecture**, where:
 
-The FAISS index stores these embeddings for fast semantic retrieval.
+- A knowledge base (`data.txt`) is embedded using **Sentence-Transformers** and indexed with **FAISS**.  
+- The system retrieves semantically relevant chunks for a given user query.  
+- Lightweight open models like **TinyLlama** or **Phi-2** (via Hugging Face Transformers) generate final, context-aware responses.  
 
-When a user asks a question, the most relevant chunks are retrieved.
+The design ensures privacy, reproducibility, and full offline execution — suitable for research, personal assistants, or secure enterprise environments.
 
-A local language model (TinyLlama or Phi-2) generates a response using that context.
+---
 
-This setup creates a lightweight, modular, and completely offline text-generation system suitable for research, demos, and educational projects.
+## 🚀 Features
 
-🚀 Features
+- End-to-end offline RAG pipeline: data → embeddings → retrieval → text generation  
+- Semantic search powered by Sentence-Transformers and FAISS  
+- Local text generation using open-source transformer models (TinyLlama / Phi-2)  
+- Modular and extensible design for easy experimentation with other models or datasets  
 
-End-to-end RAG pipeline: local data → embeddings → retrieval → context-based generation
+---
 
-Semantic similarity search: powered by Sentence-Transformers and FAISS
+## 🛠️ Technologies Used
 
-Offline language generation: runs locally via TinyLlama or Phi-2
+- Python 3.x  
+- PyTorch  
+- Hugging Face Transformers  
+- Sentence-Transformers  
+- FAISS (Facebook AI Similarity Search)  
 
-Modular architecture: separate components for embedding, retrieval, and generation
+---
 
-Reproducible and scalable: easy to extend for larger datasets or other models
+## 📂 Project Structure
 
-🛠️ Technologies Used
+```
 
-Python 3.x
+├── README.md          # Project documentation
+├── main.py            # Orchestrates retrieval and generation
+├── embedder.py        # Creates and indexes text embeddings
+├── retriever.py       # Retrieves top-k relevant chunks for a query
+├── generator.py       # Loads and runs the language model
+└── data.txt           # Local knowledge base
 
-PyTorch
+````
 
-Hugging Face Transformers
+---
 
-Sentence-Transformers
+## ⚡ Getting Started
 
-FAISS (Facebook AI Similarity Search)
-
-📂 Project Structure
-|── README.md              # Project documentation
-├── main.py                # Orchestrates the full RAG pipeline
-├── embedder.py            # Generates and indexes document embeddings
-├── retriever.py           # Retrieves top relevant chunks for a query
-├── generator.py           # Loads the local LLM and generates text
-└── data.txt               # Knowledge base / reference text
-
-⚡ Getting Started
-1. Clone the repository
+### 1. Clone the repository
+```bash
 git clone https://github.com/JoshDilipkumarPatel/Local-RAG-System.git
 cd Local-RAG-System
+````
 
-2. Install dependencies
+### 2. Install dependencies
+
+```bash
 pip install torch transformers sentence-transformers faiss-cpu
+```
 
-3. Add your data and run
+### 3. Add your data and run
 
-Add your custom text to data.txt. Example:
+Add your text content to `data.txt`.
 
-Artificial Intelligence enables systems to learn from data and improve over time.
+**Example:**
 
+```
+Blockchain is a decentralized ledger technology that ensures secure, transparent transactions.
+```
 
 Then run:
 
+```bash
 python main.py
+```
 
-4. Interact
+### 4. Output
 
-Ask questions interactively:
+Ask questions directly in the console:
 
-Enter your question: What is Artificial Intelligence?
+```
+Enter your question: What is blockchain?
+```
 
-💬 Example Output
-Enter your question: What is Artificial Intelligence?
+The model retrieves relevant context and generates an informed response.
+
+---
+
+## 📊 Example Output
+
+```
+Enter your question: What is blockchain?
 
 Answer:
-Artificial Intelligence refers to computer systems that can perform tasks requiring human-like intelligence, such as learning, reasoning, and language understanding.
+Blockchain is a distributed ledger technology that records transactions across multiple systems, ensuring transparency and eliminating the need for central intermediaries.
+```
 
-📊 Example Architecture Flow
-data.txt → embeddings → FAISS index → retriever → generator (LLM) → response
+---
 
-✨ Future Improvements
+## 📂 Sample Knowledge Base
 
-Add UI with Streamlit or Gradio for interactive use
+You can include any domain text (academic notes, FAQs, documents, etc.) inside `data.txt`.
+The retriever will automatically index it for semantic search and retrieval.
 
-Introduce hybrid retrieval (BM25 + dense embeddings)
+---
 
-Evaluate using retrieval metrics (Recall@k, MRR)
+## ✨ Future Improvements
 
-Expand dataset for domain-specific knowledge bases
+* Integration with a Streamlit or Gradio web interface
+* Support for hybrid retrieval (dense + keyword-based search)
+* Evaluate performance with retrieval metrics like Recall@k and MRR
+* Extend to handle multi-document summarization and question-answering
+
+---
+
+## 📚 References
+
+* [Hugging Face Transformers](https://huggingface.co/docs/transformers)
+* [Sentence-Transformers](https://www.sbert.net)
+* [FAISS Library](https://faiss.ai)
+
+---
+
+## 👨‍💻 Author
+
+**Josh Dilipkumar Patel**
+📧 [joshdilipkumapatel@gmail.com](mailto:joshdilipkumapatel@gmail.com)
+🔗 [GitHub Profile](https://github.com/JoshDilipkumarPatel)
+
+```
+
+---
+It’ll look clean, consistent, and professional.
+```
